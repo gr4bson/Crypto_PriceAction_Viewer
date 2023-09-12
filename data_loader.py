@@ -1,3 +1,4 @@
+from datetime import datetime
 import requests
 import csv
 from io import StringIO
@@ -24,3 +25,12 @@ class DataLoader:
             return data_to_add
         else:
             return None
+
+    @classmethod
+    def filter_data_by_date(cls, data, date_limit):
+        filtered_data = []
+        for item in data:
+            item_date = datetime.strptime(item['date'], '%Y-%m-%d %H:%M:%S')
+            if item_date > date_limit:
+                filtered_data.append(item)
+        return filtered_data

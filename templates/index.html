@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Kryptowaluty</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Import Danych Kryptowalut</h1>
+        <form method="POST">
+            <label for="symbol">Wybierz symbol kryptowaluty:</label>
+            <select id="symbol" name="symbol">
+                {% for symbol in crypto_symbols %}
+                <option value="{{ symbol }}">{{ symbol }}</option>
+                {% endfor %}
+            </select>
+            <br><br>
+            <label for="start_date">Data początkowa:</label>
+            <input type="date" id="start_date" name="start_date" required>
+            <label for="start_time">Godzina początkowa:</label>
+            <input type="time" id="start_time" name="start_time" value="00:00" required>
+            <br><br>
+            <label for="end_date">Data końcowa:</label>
+            <input type="date" id="end_date" name="end_date" required>
+            <label for="end_time">Godzina końcowa:</label>
+            <input type="time" id="end_time" name="end_time" value="00:00" required>
+            <br><br>
+            <button type="submit">Importuj</button>
+        </form>
+        {% if message %}
+        <div class="message">{{ message }}</div>
+        {% endif %}
+        {% if analysis_result %}
+        <div class="analysis">
+            <h2>Wyniki Analizy</h2>
+            <table>
+                <tr>
+                    <th>Parametr</th>
+                    <th>Wartość</th>
+                </tr>
+                <tr>
+                    <td>Najniższa cena w analizowanym okresie</td>
+                    <td>{{ analysis_result.min_low_price }}</td>
+                </tr>
+                <tr>
+                    <td>Najwyższa cena w analizowanym okresie</td>
+                    <td>{{ analysis_result.max_high_price }}</td>
+                </tr>
+                <tr>
+                    <td>Różnica cen</td>
+                    <td>{{ analysis_result.price_span }}</td>
+                </tr>
+                <tr>
+                    <td>Procentowa różnica cen</td>
+                    <td>{{ analysis_result.percentage_price_span }}%</td>
+                </tr>
+                <tr>
+                    <td>Cena otwarcia</td>
+                    <td>{{ analysis_result.open_price }}</td>
+                </tr>
+                <tr>
+                    <td>Cena zamknięcia</td>
+                    <td>{{ analysis_result.close_price }}</td>
+                </tr>
+                <tr>
+                    <td>Procentowa zmiana ceny</td>
+                    <td>{{ analysis_result.percentage_change }}%</td>
+                </tr>
+            </table>
+        </div>
+        {% endif %}
+        {% if message %}
+        <div class="message">{{ chart_message }}</div>
+        {% endif %}
+
+        {% if candlestick_fig %}
+        <div class="candlestick-chart">
+            <h2>Wykres świeczkowy</h2>
+            <div>{{ candlestick_fig|safe }}</div>
+        </div>
+        {% endif %}
+
+    </div>
+</body>
+</html>

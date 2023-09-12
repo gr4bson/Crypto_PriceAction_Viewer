@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.container {
+    background-color: #fff;
+    margin: 20px auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px; /* Zwiększyłem maksymalną szerokość kontenera */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    text-align: left;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+select, input[type="date"], input[type="time"] {
+    width: 90%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.message {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.analysis {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f5f5f5; /* Tło sekcji z wynikami jest teraz nieco jaśniejsze */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.analysis table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.analysis th, .analysis td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+.analysis th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.analysis td:first-child {
+    font-weight: bold;
+    background-color: #eaeaea;
+}
+
+.analysis h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center; /* Wyśrodkowanie tytułu wyników */
+}
+
+.analysis p {
+    font-size: 16px;
+    margin: 5px 0;
+    text-align: center; /* Wyśrodkowanie tekstu wyników */
+}
+
+/* Dodatkowe style dla wyników, aby wyglądały lepiej */
+.analysis p:first-child {
+    font-weight: bold;
+}
+
+.analysis p:nth-child(odd) {
+    background-color: #eaeaea;
+}
