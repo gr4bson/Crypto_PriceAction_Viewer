@@ -73,7 +73,7 @@ button:hover {
 
 .analysis th, .analysis td {
     padding: 10px;
-    text-align: center;
+    text-align: left;
     border: 1px solid #ccc;
 }
 
@@ -106,4 +106,24 @@ button:hover {
 
 .analysis p:nth-child(odd) {
     background-color: #eaeaea;
+}
+
+.candlestick-section {
+    margin-top: 20px; /* Dodaj odstęp między wykresem a innymi elementami */
+    background-color: #fff; /* Zmień tło wykresu na białe */
+    padding: 20px; /* Dodaj wypełnienie dla sekcji wykresu */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%; /* Ustal szerokość na 100% */
+    max-width: 1080px; /* Możesz dostosować maksymalną szerokość według własnych preferencji */
+    margin: 0 auto; /* Wyśrodkuj sekcję na stronie */
+}
+
+.candlestick-chart {
+    margin-top: 20px; /* Dodaj odstęp między wykresem a innymi elementami */
+    background-color: #fff; /* Zmień tło wykresu na białe */
+    padding: 20px; /* Dodaj wypełnienie dla wykresu */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 95%; /* Ustal szerokość wykresu na 100% wewnątrz sekcji */
 }

@@ -22,6 +22,9 @@ def index():
     analysis_result = None
     candlestick_fig = None
     chart_message = None
+    symbol = None
+    start_datetime = None
+    end_datetime = None
     if request.method == 'POST':
         symbol = request.form['symbol']
         symbol = symbol + 'USDT'
@@ -32,10 +35,15 @@ def index():
 
         start_datetime = datetime.strptime(start_date + " " + start_time, '%Y-%m-%d %H:%M')
         end_datetime = datetime.strptime(end_date + " " + end_time, '%Y-%m-%d %H:%M')
+        first_date = datetime.strptime('2023-01-01 00:00', '%Y-%m-%d %H:%M')
+        last_date = (datetime.now() - timedelta(days=2)).replace(hour=23, minute=59, second=59)
         if start_datetime > end_datetime:
             start_datetime, end_datetime = end_datetime, start_datetime
-        if start_datetime == end_datetime:
+        elif start_datetime == end_datetime:
             message = "Daty i godziny początkowa i końcowa są sobie równe. Spróbuj ponownie."
+        elif start_datetime < first_date or end_datetime > last_date:
+            message = f"Minimalna i maksymalna data analizy to: {first_date} - {last_date}." \
+                      f"Zmień wprowadzone daty."
         else:
             if is_data_up_to_date(symbol):
                 message = f"Dane w bazie danych dla {symbol} są aktualne."
@@ -61,17 +69,19 @@ def index():
 
             analysis_result = CryptoData.analyze_data_between_dates(symbol, start_datetime, end_datetime)
             # Generowanie wykresu świeczkowego
-            if (end_datetime - start_datetime).days > 31:
+            analysis_period = end_datetime - start_datetime
+            analysis_period = analysis_period.days
+            if analysis_period > 31:
                 # Wyświetl informację o ograniczeniu
                 chart_message = "Wykres dostępny dla interwałów nie dłuższych niż 31 dni."
                 candlestick_fig = None  # wartość None, aby nie generować wykresu
             else:
                 candlestick_fig = generate_candlestick_chart(CryptoData.get_data_between_dates(symbol, start_datetime,
-                                                                                               end_datetime))
+                                                                                               end_datetime), symbol)
 
     return render_template('index.html', crypto_symbols=crypto_symbols, message=message,
                            analysis_result=analysis_result, chart_message=chart_message,
-                           candlestick_fig=candlestick_fig)
+                           candlestick_fig=candlestick_fig, symbol=symbol, analysis_period=f"{start_datetime} - {end_datetime}")
 
 
 if __name__ == '__main__':

@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Import Danych Kryptowalut</h1>
+        <h1>Kryptowalutowa analiza</h1>
         <form method="POST">
             <label for="symbol">Wybierz symbol kryptowaluty:</label>
             <select id="symbol" name="symbol">
@@ -32,56 +32,63 @@
         {% if message %}
         <div class="message">{{ message }}</div>
         {% endif %}
+    </div>
+    <div class="container">
         {% if analysis_result %}
         <div class="analysis">
             <h2>Wyniki Analizy</h2>
+            <p>Symbol kryptowaluty: {{ symbol }}</p>
+            <p>Okres analizy: {{ analysis_period }}</p>
             <table>
                 <tr>
-                    <th>Parametr</th>
-                    <th>Wartość</th>
+                    <th style="text-align: center;">Parametr</th>
+                    <th style="text-align: center;">Wartość</th>
                 </tr>
                 <tr>
                     <td>Najniższa cena w analizowanym okresie</td>
-                    <td>{{ analysis_result.min_low_price }}</td>
+                    <td>{{ analysis_result.min_low_price|round(2) }}</td>
                 </tr>
                 <tr>
                     <td>Najwyższa cena w analizowanym okresie</td>
-                    <td>{{ analysis_result.max_high_price }}</td>
+                    <td>{{ analysis_result.max_high_price|round(2) }}</td>
                 </tr>
                 <tr>
                     <td>Różnica cen</td>
-                    <td>{{ analysis_result.price_span }}</td>
+                    <td>{{ analysis_result.price_span|round(2) }}</td>
                 </tr>
                 <tr>
                     <td>Procentowa różnica cen</td>
-                    <td>{{ analysis_result.percentage_price_span }}%</td>
+                    <td>{{ analysis_result.percentage_price_span|round(2) }}%</td>
                 </tr>
                 <tr>
                     <td>Cena otwarcia</td>
-                    <td>{{ analysis_result.open_price }}</td>
+                    <td>{{ analysis_result.open_price|round(2) }}</td>
                 </tr>
                 <tr>
                     <td>Cena zamknięcia</td>
-                    <td>{{ analysis_result.close_price }}</td>
+                    <td>{{ analysis_result.close_price|round(2) }}</td>
                 </tr>
                 <tr>
                     <td>Procentowa zmiana ceny</td>
-                    <td>{{ analysis_result.percentage_change }}%</td>
+                    <td>{{ analysis_result.percentage_change|round(2) }}%</td>
                 </tr>
             </table>
         </div>
         {% endif %}
-        {% if message %}
+    </div>
+    {% if chart_message %}
+    <div class="candlestick-section">
+        <h2>Wykres zmiany cen</h2>
         <div class="message">{{ chart_message }}</div>
-        {% endif %}
-
-        {% if candlestick_fig %}
+    </div>
+    {% endif %}
+    {% if candlestick_fig %}
+    <div class="candlestick-section">
+        <h2>Wykres zmiany cen</h2>
         <div class="candlestick-chart">
-            <h2>Wykres świeczkowy</h2>
             <div>{{ candlestick_fig|safe }}</div>
         </div>
-        {% endif %}
-
     </div>
+    {% endif %}
 </body>
 </html>
