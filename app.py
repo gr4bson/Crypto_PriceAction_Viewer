@@ -40,12 +40,13 @@ def index():
         end_datetime = datetime.strptime(end_date + " " + end_time, '%Y-%m-%d %H:%M')
         first_date = datetime.strptime('2023-01-01 00:00', '%Y-%m-%d %H:%M')
         last_date = (datetime.now() - timedelta(days=2)).replace(hour=23, minute=59, second=59)
+        last_date = datetime.strftime(last_date, '%Y-%m-%d %H:%M:%S')
         if start_datetime > end_datetime:
             start_datetime, end_datetime = end_datetime, start_datetime
         elif start_datetime == end_datetime:
             message = "Daty i godziny początkowa i końcowa są sobie równe. Spróbuj ponownie."
         elif start_datetime < first_date or end_datetime > last_date:
-            message = f"Minimalna i maksymalna data analizy to: {first_date} - {last_date}." \
+            message = f"Minimalna i maksymalna data analizy to: {first_date} - {last_date}" \
                       f"Zmień wprowadzone daty."
         else:
             if is_data_up_to_date(symbol):
