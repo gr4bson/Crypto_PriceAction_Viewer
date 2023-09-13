@@ -8,6 +8,9 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///crypto_data.db'  # Ustaw bazę danych SQLite
 db.init_app(app)
 
+with app.app_context():
+    db.create_all()
+
 # Lista dostępnych symboli kryptowalut
 crypto_symbols = ['BTC', 'ETH', 'LTC', 'XRP', 'SOL']
 
@@ -85,7 +88,7 @@ def index():
 
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
+    #with app.app_context():
+    #    db.create_all()
     app.run(debug=True)
 
