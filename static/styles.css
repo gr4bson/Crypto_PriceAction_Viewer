@@ -60,7 +60,7 @@ button:hover {
 .analysis {
     margin-top: 20px;
     padding: 20px;
-    background-color: #f5f5f5; /* Tło sekcji z wynikami jest teraz nieco jaśniejsze */
+    background-color: #f5f5f5;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -99,7 +99,7 @@ button:hover {
     text-align: center; /* Wyśrodkowanie tekstu wyników */
 }
 
-/* Dodatkowe style dla wyników, aby wyglądały lepiej */
+/* Dodatkowe style dla wyników */
 .analysis p:first-child {
     font-weight: bold;
 }
@@ -109,21 +109,21 @@ button:hover {
 }
 
 .candlestick-section {
-    margin-top: 20px; /* Dodaj odstęp między wykresem a innymi elementami */
-    background-color: #fff; /* Zmień tło wykresu na białe */
-    padding: 20px; /* Dodaj wypełnienie dla sekcji wykresu */
+    margin-top: 20px; /* odstęp między wykresem a innymi elementami */
+    background-color: #fff; /* tło wykresu: białe */
+    padding: 20px; /* wypełnienie dla sekcji wykresu */
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 100%; /* Ustal szerokość na 100% */
-    max-width: 1080px; /* Możesz dostosować maksymalną szerokość według własnych preferencji */
-    margin: 0 auto; /* Wyśrodkuj sekcję na stronie */
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto; /* Wyśrodkowuje sekcję na stronie */
 }
 
 .candlestick-chart {
-    margin-top: 20px; /* Dodaj odstęp między wykresem a innymi elementami */
-    background-color: #fff; /* Zmień tło wykresu na białe */
-    padding: 20px; /* Dodaj wypełnienie dla wykresu */
+    margin-top: 20px; /* odstęp między wykresem a innymi elementami */
+    background-color: #fff; /* tło wykresu: białe */
+    padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 95%; /* Ustal szerokość wykresu na 100% wewnątrz sekcji */
+    width: 95%;
 }

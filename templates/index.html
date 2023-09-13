@@ -33,8 +33,8 @@
         <div class="message">{{ message }}</div>
         {% endif %}
     </div>
+    {% if analysis_result %}
     <div class="container">
-        {% if analysis_result %}
         <div class="analysis">
             <h2>Wyniki Analizy</h2>
             <p>Symbol kryptowaluty: {{ symbol }}</p>
@@ -74,8 +74,8 @@
                 </tr>
             </table>
         </div>
-        {% endif %}
     </div>
+    {% endif %}
     {% if chart_message %}
     <div class="candlestick-section">
         <h2>Wykres zmiany cen</h2>
